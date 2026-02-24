@@ -338,6 +338,9 @@ input:checked + .slider-button::before {
   font-weight: bold;
 }
 
+#strong-value {
+  color: black;
+}
 /* Features Section */
 
 .features-section {
