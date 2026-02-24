@@ -44,3 +44,52 @@
     }
 
 }
+
+/* LOJA */
+
+@media (max-width: 600px){
+
+  .loja-header{
+    padding: 16px;
+    text-align: center;
+  }
+
+  .loja-title{
+    font-size: 22px;
+  }
+
+  .loja-subtitle{
+    font-size: 14px;
+  }
+
+  .loja-grid{
+    grid-template-columns: 1fr;
+    gap: 18px;
+    padding: 14px;
+  }
+
+  .skin-img{
+    height: 190px;
+  }
+
+  .skin-name{
+    font-size: 14px;
+  }
+
+  .skin-price{
+    font-size: 16px;
+  }
+
+}
+
+@media (min-width: 601px) and (max-width: 1024px){
+
+  .loja-grid{
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .skin-img{
+    height: 210px;
+  }
+
+}
