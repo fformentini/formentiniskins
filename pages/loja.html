@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Loja | Formentini Skins</title>
+    <link rel="stylesheet" href="../styles/style.css" />
+    <link rel="stylesheet" href="../styles/loja.css">
+     <!-- Bootstrap icons  -->
+     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+  </head>
+
+  <body>
+    <header class="loja-header">
+      <a href="../index.html" class="btn-voltar"><i class="bi bi-arrow-bar-left"></i> Voltar</a>
+      <h1 class="loja-title">Skins disponíveis</h1>
+      <p class="loja-subtitle">Chama na DM pra fechar.</p>
+    </header>
+
+    <main class="loja-grid" id="lojaGrid"></main>
+
+    <script>
+      // Dados das skins 
+      const SKINS = [
+        { name: "M9 BAYONET | LORE", price: "R$ 3.000", img: "../assets/skins/m9lore.png", tag: "FT", float: 0.20,soldout: true },
+        { name: "SPORT GLOVES | VICE", price: "R$ 3.700", img: "../assets/skins/glovevice.png", tag: "FT", float: 0.28 },
+        { name: "DESERT EAGLE | HEAT TREATED", price: "R$ 500", img: "../assets/skins/eagleheattreated.png", tag: "FT", float: 0.36 },        
+        { name: "AWP | REDLINE", price: "R$ 1000", img: "../assets/skins/awpredline.png", tag: "FT", float: 0.20 },
+        { name: "M4A4 | TEMUKAU", price: "R$ 250", img: "../assets/skins/m4temukau.png", tag: "FT", float: 0.19 },
+        { name: "AK-47 | MIDNIGHT LAMINATE", price: "R$ 130", img: "../assets/skins/akmidnight.png", tag: "MW", float: 0.09 },
+        { name: "GALIL | RAINBOW SPOON", price: "R$ 350", img: "../assets/skins/galilrainbow.png", tag: "MW", float: 0.13 },
+      ];
+
+      const grid = document.getElementById("lojaGrid");
+      grid.innerHTML = SKINS.map((s) => `
+  <article class="skin-card ${s.soldout ? "is-sold" : ""}">
+
+    ${s.soldout ? `<div class="skin-sold">VENDIDO</div>` : ""}
+
+    <img class="skin-img" src="${s.img}" alt="${s.name}" loading="lazy" />
+
+    <div class="skin-body">
+      <h2 class="skin-name">${s.name}</h2>
+
+      <div class="skin-meta">
+        <span class="skin-tag">${s.tag}</span>
+        <span class="skin-float">${s.float}</span>
+        <span class="skin-price">${s.price} </span>
+      </div>
+
+      ${
+        s.soldout
+          ? `<div class="skin-cta sold">Indisponível</div>`
+          : `<a class="skin-cta" href="https://wa.me/5521984063033?text=${encodeURIComponent("Quero essa skin: " + s.name)}" target="_blank">Chamar no WhatsApp</a>`
+      }
+
+    </div>
+  </article>
+`).join("");
+    </script>
+  </body>
+</html>
