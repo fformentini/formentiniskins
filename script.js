@@ -116,3 +116,66 @@ function carregarTradutor() {
   }, 'google_translate_element');
 }
 
+//  Popup Loja 
+(function () {
+  const POPUP_ID = "shopPopup";
+  const CLOSE_ID = "shopPopupClose";
+  const SHOW_AFTER_MS = 2000; // tempo pra aparecer 
+
+  document.addEventListener("DOMContentLoaded", function () {
+    const popup = document.getElementById(POPUP_ID);
+    const closeBtn = document.getElementById(CLOSE_ID);
+
+    if (!popup || !closeBtn) return;
+
+    // Mostra sempre que carregar a página
+    setTimeout(() => {
+      popup.hidden = false;
+      requestAnimationFrame(() => {
+        popup.classList.add("is-visible");
+      });
+    }, SHOW_AFTER_MS);
+
+    // Botão fechar
+    closeBtn.addEventListener("click", () => {
+      popup.classList.remove("is-visible");
+      setTimeout(() => {
+        popup.hidden = true;
+      }, 250);
+    });
+  });
+})();
+
+
+//  Exit Popup 
+(function () {
+  const popup = document.getElementById("exitPopup");
+  const closeBtn = document.getElementById("exitPopupClose");
+
+  if (!popup || !closeBtn) return;
+
+  let shown = false; // evita abrir várias vezes
+
+  document.addEventListener("mouseleave", function (e) {
+    if (shown) return;
+
+    // Detecta saída pelo topo
+    if (e.clientY <= 0) {
+      shown = true;
+
+      popup.hidden = false;
+
+      requestAnimationFrame(() => {
+        popup.classList.add("is-visible");
+      });
+    }
+  });
+
+  // Fechar
+  closeBtn.addEventListener("click", () => {
+    popup.classList.remove("is-visible");
+    setTimeout(() => {
+      popup.hidden = true;
+    }, 250);
+  });
+})();
