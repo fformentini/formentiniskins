@@ -1,63 +1,85 @@
 <!doctype html>
 <html lang="pt-BR">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Loja | Formentini Skins</title>
-    <link rel="stylesheet" href="../styles/style.css" />
-    <link rel="stylesheet" href="../styles/loja.css">
-    <link rel="stylesheet" href="../styles/mediaquery.css">
-     <!-- Bootstrap icons  -->
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Loja | Formentini Skins</title>
+
+  <link rel="stylesheet" href="../styles/style.css" />
+  <link rel="stylesheet" href="../styles/loja.css">
+
+  <link rel="shortcut icon" href="../assets/favicon.png" type="image/x-icon">
+
+  <!-- Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+
+   <!-- Bootstrap icons  -->
      <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
-  </head>
 
-  <body>
-    <header class="loja-header">
-      <a href="../index.html" class="btn-voltar"><i class="bi bi-arrow-bar-left"></i> Voltar</a>
-      <h1 class="loja-title">Skins disponíveis</h1>
-      <p class="loja-subtitle">Chama na DM pra fechar.</p>
-    </header>
+  <!-- Fonte moderna -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
 
-    <main class="loja-grid" id="lojaGrid"></main>
+<body>
 
-    <script>
-      // Dados das skins 
-      const SKINS = [
-        { name: "M9 BAYONET | LORE", price: "R$ 3.000", img: "../assets/skins/m9lore.png", tag: "FT", float: 0.20,soldout: true },
-        { name: "SPORT GLOVES | VICE", price: "R$ 3.700", img: "../assets/skins/glovevice.png", tag: "FT", float: 0.28 },
-        { name: "DESERT EAGLE | HEAT TREATED", price: "R$ 500", img: "../assets/skins/eagleheattreated.png", tag: "FT", float: 0.36 },        
-        { name: "AWP | REDLINE", price: "R$ 1000", img: "../assets/skins/awpredline.png", tag: "FT", float: 0.20 },
-        { name: "M4A4 | TEMUKAU", price: "R$ 250", img: "../assets/skins/m4temukau.png", tag: "FT", float: 0.19 },
-        { name: "AK-47 | MIDNIGHT LAMINATE", price: "R$ 130", img: "../assets/skins/akmidnight.png", tag: "MW", float: 0.09 },
-        { name: "GALIL | RAINBOW SPOON", price: "R$ 350", img: "../assets/skins/galilrainbow.png", tag: "MW", float: 0.13 },
-      ];
+<header class="loja-header">
+ <a href="../index.html" class="btn-voltar"><i class="bi bi-arrow-bar-left"></i> Voltar</a>
 
-      const grid = document.getElementById("lojaGrid");
-      grid.innerHTML = SKINS.map((s) => `
-  <article class="skin-card ${s.soldout ? "is-sold" : ""}">
 
-    ${s.soldout ? `<div class="skin-sold">VENDIDO</div>` : ""}
+    <div class="nav-logo">Formentini<span>.</span></div>
+  
+</header>
 
-    <img class="skin-img" src="${s.img}" alt="${s.name}" loading="lazy" />
+<main class="loja-grid" id="lojaGrid"></main>
 
-    <div class="skin-body">
-      <h2 class="skin-name">${s.name}</h2>
+<script>
+const SKINS = [
+  { name: "M9 BAYONET | LORE", price: 3000, img: "../assets/skins/m9lore.png", tag: "FT", float: 0.20, soldout: true },
+  { name: "SPORT GLOVES | VICE", price: 3700, img: "../assets/skins/glovevice.png", tag: "FT", float: 0.28 },
+  { name: "DESERT EAGLE | HEAT TREATED", price: 500, img: "../assets/skins/eagleheattreated.png", tag: "FT", float: 0.36, soldout: true },
+  { name: "AWP | REDLINE", price: 1000, img: "../assets/skins/awpredline.png", tag: "FT", float: 0.20 },
+  { name: "M4A4 | TEMUKAU", price: 250, img: "../assets/skins/m4temukau.png", tag: "FT", float: 0.19 },
+  { name: "AK-47 | MIDNIGHT LAMINATE", price: 130, img: "../assets/skins/akmidnight.png", tag: "MW", float: 0.09, soldout: true },
+  { name: "GALIL | RAINBOW SPOON", price: 350, img: "../assets/skins/galilrainbow.png", tag: "MW", float: 0.13 },
+];
 
-      <div class="skin-meta">
-        <span class="skin-tag">${s.tag}</span>
-        <span class="skin-float">${s.float}</span>
-        <span class="skin-price">${s.price} </span>
-      </div>
+const grid = document.getElementById("lojaGrid");
 
-      ${
-        s.soldout
-          ? `<div class="skin-cta sold">Indisponível</div>`
-          : `<a class="skin-cta" href="https://wa.me/5521984063033?text=${encodeURIComponent("Quero essa skin: " + s.name)}" target="_blank">Chamar no WhatsApp</a>`
-      }
+const formatPrice = (value) =>
+  value.toLocaleString("pt-BR", { style: "currency", currency: "BRL" });
 
+grid.innerHTML = SKINS.map((s) => `
+<article class="skin-card ${s.soldout ? "is-sold" : ""}">
+
+  ${s.soldout ? `<div class="sold-overlay">VENDIDO</div>` : ""}
+
+  <div class="img-wrapper">
+    <img src="${s.img}" alt="${s.name}" loading="lazy" />
+  </div>
+
+  <div class="skin-body">
+
+    <h2 class="skin-name">${s.name}</h2>
+
+    <div class="skin-info">
+      <span class="badge">${s.tag}</span>
+      <span class="float">Float: ${s.float}</span>
     </div>
-  </article>
+
+    <div class="price">${formatPrice(s.price)}</div>
+
+    ${
+      s.soldout
+        ? `<button class="btn sold" disabled>Indisponível</button>`
+        : `<a class="btn" href="https://wa.me/5521984063033?text=${encodeURIComponent("Quero essa skin: " + s.name)}" target="_blank">
+            <i class="bi bi-whatsapp"></i> Comprar
+          </a>`
+    }
+
+  </div>
+</article>
 `).join("");
-    </script>
-  </body>
+</script>
+
+</body>
 </html>
