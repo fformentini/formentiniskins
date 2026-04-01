@@ -320,6 +320,8 @@
     @media (max-width: 768px) {
       .nav-links { display: none; }
       .about-grid { grid-template-columns: 1fr; gap: 40px; }
+      .hero-actions { justify-content: center; }  
+      .about-chips { width: 70%; margin: 0 auto; text-align: center; flex-direction: column; gap: 12px; }
       .features-grid { grid-template-columns: 1fr; }
       .testimonials-grid { grid-template-columns: 1fr; }
       .stats-strip { grid-template-columns: 1fr; }
